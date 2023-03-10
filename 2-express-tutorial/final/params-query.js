@@ -14,4 +14,16 @@ app.get('/api/products', (req, res)=>{
     res.send(newProducts)
 })
 
+app.get('/api/products/:productID', (req, res)=>{
+    const id = req.params.productID
+    const singleProduct = products.find(item=> item.id === Number(id))
+    if(singleProduct){
+        res.send(singleProduct)
+    }
+    else{
+        res.status(404).send('<h1>Product Not found</h1>')
+    }
+    
+})
+
 app.listen(5000)
