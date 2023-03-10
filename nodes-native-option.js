@@ -1,6 +1,5 @@
 const { readFile, writeFile } = require('fs').promises
 
-
 const start = async()=>{
     try{
         const firstFile = await readFile('./content/first.txt', 'utf8')
