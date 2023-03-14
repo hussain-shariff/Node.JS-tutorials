@@ -31,9 +31,8 @@ const getSingleTask = async (req, res)=>{
 
 const updateTask = async (req, res)=>{
     const { id : taskID } = req.params
-    const { name: updateName } = req.body
     try {
-        const updatedTask = await Task.findOneAndUpdate({_id : taskID}, {name : updateName})
+        const updatedTask = await Task.findOneAndUpdate({_id : taskID}, req.body, {new : true})
         res.json(updatedTask)
     } catch (error) {
         res.status(404).send(error)
