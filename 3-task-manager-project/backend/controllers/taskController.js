@@ -1,53 +1,52 @@
-let tasks = require('../data')
+const Task = require('../models/Tasks')
 
-const getTasks = (req, res)=>{
-    res.json(tasks)
+const getTasks = async (req, res)=>{
+    try {
+        const Tasks = await Task.find({})
+        res.json(Tasks)
+    } catch (error) {
+        res.status(404).send(error)
+    }
+    
 }
 
-const createTask = (req, res)=>{
-    const { name, id, completed } = req.body
-    tasks.push({name, id, completed})
-    res.json(tasks)
+const createTask = async (req, res)=>{
+    try {
+        const task = await Task.create(req.body) 
+        res.json(task)
+    } catch (error) {
+        res.status(404).send(error)
+    }
 }
 
-const getSingleTask = (req, res)=>{
+const getSingleTask = async (req, res)=>{
     const { id } = req.params
-    const checkTask = tasks.find(task=> task.id === Number(id))
-    if (checkTask){
-        res.json(checkTask)
-    }
-    else{
-        res.status(404).send('Task not found...')
-    }
-}
-
-const updateTask = (req, res)=>{
-    const { id } = req.params
-    const { name } = req.body
-    const checkTask = tasks.find(task=> task.id === Number(id))
-    if (checkTask){
-        tasks = tasks.map(task=>{
-            if(task.id === Number(id)){
-                task.name = name
-            }
-            return task
-        })
-        res.json(tasks) 
-    }
-    else{
-        res.status(404).send('Task not found...')
+    try {
+        const singleTask = await Task.findOne({_id : id})
+        res.json(singleTask)
+    } catch (error) {
+        res.status(404).send(error)
     }
 }
 
-const deleteTask = (req, res)=>{
-    const { id } = req.params
-    const checkTask = tasks.find(task=> task.id === Number(id))
-    if (checkTask){
-        tasks = tasks.filter(task=> task.id !== Number(id))
-        res.json(tasks)
+const updateTask = async (req, res)=>{
+    const { id : taskID } = req.params
+    const { name: updateName } = req.body
+    try {
+        const updatedTask = await Task.findOneAndUpdate({_id : taskID}, {name : updateName})
+        res.json(updatedTask)
+    } catch (error) {
+        res.status(404).send(error)
     }
-    else{
-        res.status(404).send('Task not found...')
+}
+
+const deleteTask = async (req, res)=>{
+    const { id : taskID } = req.params
+    try {
+        const deleteTask = await Task.findOneAndDelete({_id : taskID})
+        res.json(deleteTask)
+    } catch (error) {
+        res.status(404).send(error)
     }
 }
 
