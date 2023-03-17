@@ -35,6 +35,12 @@ const skipProducts = async (req, res)=>{
     res.json({product, items : product.length})
 }
 
+const numericFilters = async (req, res)=>{
+    const {filter:filterNo} = req.query
+    const product = await model.find({price:{$gt : 30}}).sort('price')
+    res.json({product, items : product.length})
+}
+
 const MongoDBQueryOperator = async (req, res)=>{
     const {name : productName} = req.query
     const product = await model.find({
@@ -50,5 +56,6 @@ module.exports = {
     sortAllProducts,
     getProductsByFields,
     limitProducts,
-    skipProducts
+    skipProducts,
+    numericFilters
 }

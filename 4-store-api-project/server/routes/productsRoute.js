@@ -7,7 +7,8 @@ const {
     sortAllProducts,
     getProductsByFields,
     limitProducts,
-    skipProducts
+    skipProducts,
+    numericFilters
 } = require('../controllers/productsController')
 
 router.get('/', getAllProducts)
@@ -17,5 +18,6 @@ router.get('/sort', sortAllProducts)
 router.get('/fields', getProductsByFields)
 router.get('/limit', limitProducts)
 router.get('/skip', skipProducts)
+router.get('/filter', numericFilters)
 
 module.exports = router
