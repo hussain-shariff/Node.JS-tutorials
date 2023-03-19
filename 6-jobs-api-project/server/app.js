@@ -1,13 +1,14 @@
 const express = require('express')
 const app = express()
 const connectDB = require('./db/connect')
+const jobsRoute = require('./routes/main')
 require('dotenv').config()
 
 // middleware
 app.use(express.json())
 
 // routes
-
+app.use('/api/v1', jobsRoute)
 
 // start
 const port = process.env.PORT || 5000
