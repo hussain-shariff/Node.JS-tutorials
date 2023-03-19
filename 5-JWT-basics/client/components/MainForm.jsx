@@ -9,6 +9,7 @@ function MainForm() {
         e.preventDefault()
         if(usernameRef.current.value === "" || passwordRef.current.value === ""){
             seterror(true)
+            localStorage.removeItem('token')
             return
         }
         seterror(false)

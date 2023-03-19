@@ -1,14 +1,11 @@
 const jwt = require('jsonwebtoken')
 
 const dashBoardController = async (req, res)=>{
-    const authHeader = req.headers.authorization;
-    if(!authHeader || !authHeader.startsWith('Bearer ')){
-        res.status(404).send('Token not found')
-    }
+    const {id, username} = req.user
     const randNum = Math.floor(Math.random() * 100)
     res.json({
         suceess : true,
-        msg : `Hello John Doe`,
+        msg : `Hello ${username}`,
         secret : `Here is your authorized data, your lucky number is ${randNum}`
     })
 }
