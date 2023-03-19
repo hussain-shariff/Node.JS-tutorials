@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const connectDB = require('./db/connect')
 require('dotenv').config()
 
 // middleware
@@ -12,7 +13,7 @@ app.use(express.json())
 const port = process.env.PORT || 5000
 const start = () =>{
     try {
-        // connectDB
+        connectDB(process.env.MONGO_URI)
         app.listen(port, ()=>{
             console.log('starting server...')
         })
