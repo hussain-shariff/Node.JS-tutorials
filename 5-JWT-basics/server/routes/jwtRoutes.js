@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router();
 const {
-    testController
+    dashBoardController,
+    loginController
 } = require('../controllers/jwtController')
 
-router.get('/', testController)
+router.get('/dashboard', dashBoardController)
+router.post('/login', loginController)
 
 module.exports = router

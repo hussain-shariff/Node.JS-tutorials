@@ -9,7 +9,7 @@ require('dotenv').config()
 app.use(express.json())
 
 // routes
-app.use('/api/v1/users', router)
+app.use('/api/v1', router)
 
 
 // start
