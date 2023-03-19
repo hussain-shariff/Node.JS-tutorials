@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const router = require('./routes/jwtRoutes')
+const connectDB = require('./db/connect')
 require('dotenv').config()
 
 
@@ -15,11 +16,12 @@ app.use('/api/v1/users', router)
 const port = process.env.PORT || 5000
 const start = ()=>{
     try {
+        connectDB(process.env.MONGO_URI)
         app.listen(port, ()=>{
             console.log('server starting...')
         })
     } catch (error) {
-        console.log(error);
+        console.log(error)
     }
 }
 
