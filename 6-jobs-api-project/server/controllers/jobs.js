@@ -1,10 +1,13 @@
 const jobsModel = require('../model/jobSchema')
 
 const getAllJobs = async (req, res) =>{
-    res.json(req.user)
+    const jobs = await jobsModel.find({ createdBy : req.user.userID}).sort('createdAt')
+    res.json({ count : jobs.length, jobs})
 }
 const getJob = async (req, res) =>{
-    res.send('get a job')
+    const {id} = req.params
+    const job = await jobsModel.findOne({_id : id})
+    res.json(job)
 }
 const createJob = async (req, res) =>{
     req.body.createdBy = req.user.userID
@@ -12,10 +15,14 @@ const createJob = async (req, res) =>{
     res.json(job)
 }
 const updateJob = async (req, res) =>{
-    res.send('update jobs')
+    const { id } = req.params
+    const job = await jobsModel.findOneAndUpdate({ _id : id }, req.body, { new : true })
+    res.json(job)
 }
 const deleteJob = async (req, res) =>{
-    res.send('delete jobs')
+    const { id } = req.params
+    const jobs = await jobsModel.deleteOne({_id : id})
+    res.json(jobs)
 }
 
 module.exports = {
