@@ -9,8 +9,7 @@ const authentication = (req, res, next) =>{
         try {
             const token = authHeader.split(' ')[1]
             const decoded = jwt.verify(token, process.env.JWT_SECRET)
-            const { username, id } = decoded
-            req.user = { username, id }
+            console.log(decoded);
             next()
         } catch (error) {
             res.status(404).send('Token expired')
