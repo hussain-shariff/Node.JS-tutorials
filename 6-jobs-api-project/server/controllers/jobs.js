@@ -6,7 +6,8 @@ const getAllJobs = async (req, res) =>{
 }
 const getJob = async (req, res) =>{
     const {id} = req.params
-    const job = await jobsModel.findOne({_id : id})
+    const {userID} = req.user
+    const job = await jobsModel.findOne({_id : id, createdBy : userID})
     res.json(job)
 }
 const createJob = async (req, res) =>{
@@ -16,12 +17,14 @@ const createJob = async (req, res) =>{
 }
 const updateJob = async (req, res) =>{
     const { id } = req.params
-    const job = await jobsModel.findOneAndUpdate({ _id : id }, req.body, { new : true })
+    const {userID} = req.user
+    const job = await jobsModel.findOneAndUpdate({ _id : id, createdBy : userID }, req.body, { new : true })
     res.json(job)
 }
 const deleteJob = async (req, res) =>{
     const { id } = req.params
-    const jobs = await jobsModel.deleteOne({_id : id})
+    const {userID} = req.user
+    const jobs = await jobsModel.deleteOne({_id : id, createdBy : userID})
     res.json(jobs)
 }
 
