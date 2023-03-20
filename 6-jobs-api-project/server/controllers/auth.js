@@ -20,7 +20,7 @@ const login = async (req, res) => {
     }
     else{
         const token = user.createJWT()
-        res.json({user : user.password, token})
+        res.json({user : user.username, token})
     }
 }
 
