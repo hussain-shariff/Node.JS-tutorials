@@ -8,7 +8,8 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
-    res.send('login')
+    const { username, id } = req.user
+    res.json({ username, id })
 }
 
 module.exports = {
