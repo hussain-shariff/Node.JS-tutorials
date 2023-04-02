@@ -40,6 +40,16 @@ const deleteJob = async (req, res) =>{
     res.json(jobs)
 }
 
+const filterJobs = async (req, res) =>{
+    const {status, jobType, search, sort} = req.query
+    const jobs = await jobsModel.find({ 
+        createdBy : req.user.userID,
+        status,
+        jobType
+    }).sort(sort)
+    res.json(jobs)
+}
+
 module.exports = {
     getAllJobs,
     getJob,
@@ -47,5 +57,6 @@ module.exports = {
     deleteJob,
     createJob,
     updateUser,
-    getCurrentUser
+    getCurrentUser,
+    filterJobs
 }
