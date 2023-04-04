@@ -10,7 +10,6 @@ import {
     Legend, 
     ResponsiveContainer 
     } from 'recharts';
-import data from '../data';
 import { useAppContext } from '../context';
 
 const BarChartComp = () => {
