@@ -37,3 +37,13 @@ export const getAllJobsQuery = async (
 		.reverse()
 	return { count: jobs.length, jobs, monthlyApplications: monthlyApplications[0] }
 }
+
+export const getJobQuery = async (
+	parent: any,
+	{ id }: { id: string },
+	context: Tcontext
+): Promise<Tjob> => {
+	const { userID } = context
+	const job = await jobsModel.findOne({ _id: id, createdBy: userID }) as unknown as Tjob
+	return job
+}

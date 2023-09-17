@@ -38,3 +38,11 @@ export type TgetAllJobsResponse = {
 	jobs: Array<Tjob>
 	monthlyApplications: TmonthlyApplications
 }
+
+export type TcreateJobInput = {
+	company: string
+	jobType: string
+	location: string
+	position: string
+	status: string
+}

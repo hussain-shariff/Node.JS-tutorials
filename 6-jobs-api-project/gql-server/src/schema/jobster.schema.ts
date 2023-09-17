@@ -1,5 +1,4 @@
 export const getAllJobs = `#graphql
-
  type MonthlyApplications {
     date: String!
     count: Int!
@@ -22,5 +21,29 @@ export const getAllJobs = `#graphql
   }
   extend type Query {
     getAllJobs: getAllJobsResponse!
+  }
+`
+
+export const getJob = `#graphql
+  extend type Query {
+    getJob(id: ID!): Job!
+  }
+`
+
+export const createJob = `#graphql
+  extend type Mutation {
+    createJob(input: createJobInput!): Job!
+  }
+`
+
+export const updateJob = `#graphql
+  extend type Mutation {
+    updateJob(id: ID!, input: createJobInput!): Job!
+  }
+`
+
+export const deleteJob = `#graphql
+  extend type Mutation {
+    deleteJob(id: ID!): Job!
   }
 `

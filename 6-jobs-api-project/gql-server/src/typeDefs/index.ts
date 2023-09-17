@@ -8,9 +8,13 @@ const typeDefs = `#graphql
 
   type Query 
   ${jobster.getAllJobs}
+  ${jobster.getJob}
 
   type Mutation 
   ${auth.register}
   ${auth.login}
+  ${jobster.createJob}
+  ${jobster.updateJob}
+  ${jobster.deleteJob}
 `
 export default typeDefs
