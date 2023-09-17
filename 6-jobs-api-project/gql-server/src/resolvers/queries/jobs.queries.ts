@@ -2,7 +2,7 @@ import { Tcontext } from "../../helpers/context"
 import jobsModel from "../../model/jobSchema"
 import mongoose from "mongoose"
 import moment from "moment"
-import { TgetAllJobsResponse, Tjob } from "../../typeDefs"
+import { TgetAllJobsResponse, Tjob } from "../../types/common.types"
 
 export const getAllJobsQuery = async (
 	parent: any,

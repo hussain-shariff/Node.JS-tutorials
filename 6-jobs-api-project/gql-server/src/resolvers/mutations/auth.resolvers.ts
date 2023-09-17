@@ -1,6 +1,6 @@
 import { GraphQLError } from "graphql"
 import { comparePasswords, validateEmail } from "../../helpers/common"
-import { TloginInput, TregisterInput, TregisterResponse } from "../../typeDefs"
+import { TloginInput, TregisterInput, TregisterResponse } from "../../types/common.types"
 import authModel from "../../model/authSchema"
 import { createJWT } from "../../helpers/jwt"
 

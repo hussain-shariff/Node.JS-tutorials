@@ -1,87 +1,16 @@
-import { ObjectId } from "mongoose"
+import inputTypes from "../types/input.types"
+import * as jobster from "../schema/jobster.schema"
+import * as auth from "../schema/auth.schema"
 
 const typeDefs = `#graphql
-  input RegisterInput {
-    name: String!
-    email: String!
-    password: String!
-  }
-  input LoginInput {
-    email: String!
-    password: String!
-  }
-  type RegisterResponse {
-    name: String!
-    token: String!
-  }
+  # input types
+  ${inputTypes}
 
-  type Job {
-    _id: ID
-    company: String
-    createdAt: String
-    createdBy: String
-    jobType: String
-    location: String
-    position: String
-    status: String
-    updatedAt: String
-  }
-  type MonthlyApplications {
-    date: String!
-    count: Int!
-  }
-  type getAllJobsResponse {
-    count: Int!
-    jobs: [Job!]!
-    monthlyApplications: MonthlyApplications!
-  }
+  type Query 
+  ${jobster.getAllJobs}
 
-  type Query {
-    getAllJobs: getAllJobsResponse!
-  }
-
-  type Mutation {
-    register(input: RegisterInput!): RegisterResponse!
-    login(input: LoginInput!): RegisterResponse!
-  }
+  type Mutation 
+  ${auth.register}
+  ${auth.login}
 `
-export type TregisterInput = {
-	name: string
-	email: string
-	password: string
-}
-
-export type TregisterResponse = {
-	name: string
-	token: string
-}
-
-export type TloginInput = {
-	email: string
-	password: string
-}
-
-export type Tjob = {
-	_id: ObjectId
-	company?: string
-	createdAt?: NativeDate
-	createdBy?: string
-	jobType?: string
-	location?: string
-	position?: string
-	status?: string
-	updatedAt?: string
-}
-
-type TmonthlyApplications = {
-	date: string
-	count: number
-}
-
-export type TgetAllJobsResponse = {
-	count: number
-	jobs: Array<Tjob>
-	monthlyApplications: TmonthlyApplications
-}
-
 export default typeDefs
