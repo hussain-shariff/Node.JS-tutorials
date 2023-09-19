@@ -47,3 +47,42 @@ export const deleteJob = `#graphql
     deleteJob(id: ID!): Job!
   }
 `
+
+export const getCurrentUser = `#graphql
+  type User {
+    _id: ID!
+    username: String,
+    lastname: String,
+    password: String,
+    email: String,
+    location: String,
+  }
+  extend type Query {
+    getCurrentUser: User!
+  }
+`
+export const updateUser = `#graphql
+  input UserIput {
+      username: String,
+      lastname: String,
+      password: String,
+      email: String,
+      location: String,
+      id: ID!
+  }
+  extend type Mutation {
+    updateUser(input: UserIput!, id: ID!): User!
+  }
+`
+
+export const getFilteredJobs = `#graphql
+  input Params {
+    status: String
+    jobType: String
+    search: String
+    sort: String
+  }
+  extend type Query {
+    getFilteredJobs( params: Params!): [Job!]!
+  }
+`

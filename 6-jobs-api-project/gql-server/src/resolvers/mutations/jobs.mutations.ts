@@ -1,6 +1,6 @@
 import { Tcontext } from "../../helpers/context"
 import jobsModel from "../../model/jobSchema"
-import { Tjob } from "../../types/common.types"
+import { Tjob, Tuser } from "../../types/common.types"
 import { TcreateJobInput } from "../../types/common.types"
 
 export const createJobMutation = async (
@@ -41,4 +41,18 @@ export const deleteJobMutation = async (
 		createdBy: userID,
 	})) as unknown as Tjob
 	return job
+}
+
+export const updateUser = async (
+	parent: any,
+	{ input, id }: { input: Tuser, id: string },
+	context: Tcontext
+): Promise<Tuser> => {
+	const { userID } = context
+	const user = (await jobsModel.findOneAndUpdate(
+		{ createdBy: userID, _id: id },
+		{ ...input },
+		{ new: true }
+	)) as unknown as Tuser
+	return user
 }

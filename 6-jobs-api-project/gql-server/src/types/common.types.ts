@@ -46,3 +46,19 @@ export type TcreateJobInput = {
 	position: string
 	status: string
 }
+
+export type Tuser = {
+	_id: ObjectId
+	username: string
+	lastname: string
+	password: string
+	email: string
+	location: string
+}
+
+export type Tparams = {
+	status: string
+	jobType: string
+	search: string
+	sort: string
+}

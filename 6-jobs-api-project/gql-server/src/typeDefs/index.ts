@@ -9,6 +9,8 @@ const typeDefs = `#graphql
   type Query 
   ${jobster.getAllJobs}
   ${jobster.getJob}
+  ${jobster.getCurrentUser}
+  ${jobster.getFilteredJobs}
 
   type Mutation 
   ${auth.register}
@@ -16,5 +18,6 @@ const typeDefs = `#graphql
   ${jobster.createJob}
   ${jobster.updateJob}
   ${jobster.deleteJob}
+  ${jobster.updateUser}
 `
 export default typeDefs

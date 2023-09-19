@@ -1,5 +1,5 @@
 import { loginMutation, registerMutation } from "./mutations/auth.resolvers"
-import { getAllJobsQuery, getJobQuery } from "./queries/jobs.queries"
+import { getAllJobsQuery, getCurrentUserQuery, getFilteredJobsQuery, getJobQuery } from "./queries/jobs.queries"
 import {
 	createJobMutation,
 	deleteJobMutation,
@@ -10,6 +10,8 @@ const resolvers = {
 	Query: {
 		getAllJobs: getAllJobsQuery,
 		getJob: getJobQuery,
+		getCurrentUser: getCurrentUserQuery,
+		getFilteredJobs: getFilteredJobsQuery,
 	},
 	Mutation: {
 		register: registerMutation,
